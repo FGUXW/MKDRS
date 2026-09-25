@@ -1,0 +1,160 @@
+backend:
+  name: git-gateway
+  branch: main
+
+local_backend: true
+
+# Where the CMS saves uploaded images
+media_folder: "src/images/uploads"
+public_folder: "/images/uploads"
+
+# Shows a live-ish preview pane while editing (uses the site's own styling)
+site_url: https://mkdrs.org.uk
+display_url: https://mkdrs.org.uk
+
+collections:
+  - name: "pages"
+    label: "Website pages"
+    files:
+      - name: "home"
+        label: "Home page"
+        file: "src/index.md"
+        fields:
+          - { label: "Page title (for browser tab)", name: "title", widget: "string" }
+          - { label: "Search description", name: "description", widget: "text" }
+          - { label: "Welcome heading", name: "hero_title", widget: "string" }
+          - { label: "Welcome text", name: "hero_text", widget: "text" }
+          - { label: "Page image (optional, shows to the right of the welcome text)", name: "image", widget: "image", required: false }
+          - { label: "Image description (for accessibility)", name: "image_alt", widget: "string", required: false }
+          - label: "Three intro cards"
+            name: "cards"
+            widget: "list"
+            fields:
+              - { label: "Card title", name: "title", widget: "string" }
+              - { label: "Card text", name: "text", widget: "string" }
+              - { label: "Link web address", name: "link_url", widget: "string" }
+              - { label: "Link text", name: "link_text", widget: "string" }
+          - { label: "\"New to the area\" heading", name: "callout_title", widget: "string" }
+          - { label: "\"New to the area\" text", name: "callout_text", widget: "string" }
+          - { label: "\"New to the area\" link web address", name: "callout_link_url", widget: "string" }
+          - { label: "\"New to the area\" link text", name: "callout_link_text", widget: "string" }
+
+      - name: "who-we-are"
+        label: "About us: Who we are"
+        file: "src/about-us/who-we-are.md"
+        fields: &standard_page_fields
+          - { label: "Page title", name: "title", widget: "string" }
+          - { label: "Short intro (shown under the title)", name: "intro", widget: "text", required: false }
+          - { label: "Page image (optional, shows to the right of the title)", name: "image", widget: "image", required: false }
+          - { label: "Image description (for accessibility)", name: "image_alt", widget: "string", required: false }
+          - { label: "Search description", name: "description", widget: "text", required: false }
+          - { label: "Page content", name: "body", widget: "markdown" }
+
+      - name: "our-history"
+        label: "About us: Our history"
+        file: "src/about-us/our-history.md"
+        fields: *standard_page_fields
+
+      - name: "our-torah-scrolls"
+        label: "About us: Our Torah scrolls"
+        file: "src/about-us/our-torah-scrolls.md"
+        fields: *standard_page_fields
+
+      - name: "services-and-festivals"
+        label: "Jewish life: Services and festivals"
+        file: "src/jewish-life/services-and-festivals.md"
+        fields: *standard_page_fields
+
+      - name: "life-cycle-events"
+        label: "Jewish life: Life cycle events"
+        file: "src/jewish-life/life-cycle-events.md"
+        fields: *standard_page_fields
+
+      - name: "bereavement"
+        label: "Jewish life: Bereavement"
+        file: "src/jewish-life/bereavement.md"
+        fields: *standard_page_fields
+
+      - name: "converting-to-judaism"
+        label: "Jewish life: Converting to Judaism"
+        file: "src/jewish-life/converting-to-judaism.md"
+        fields: *standard_page_fields
+
+      - name: "celebrations"
+        label: "Community: Celebrations"
+        file: "src/community/celebrations.md"
+        fields: *standard_page_fields
+
+      - name: "social-events"
+        label: "Community: Social events"
+        file: "src/community/social-events.md"
+        fields: *standard_page_fields
+
+      - name: "our-choir"
+        label: "Community: Our choir"
+        file: "src/community/our-choir.md"
+        fields: *standard_page_fields
+
+      - name: "interfaith-and-outreach"
+        label: "Community: Interfaith and outreach"
+        file: "src/community/interfaith-and-outreach.md"
+        fields: *standard_page_fields
+
+      - name: "jewish-life-in-milton-keynes"
+        label: "Community: Jewish life in Milton Keynes"
+        file: "src/community/jewish-life-in-milton-keynes.md"
+        fields: *standard_page_fields
+
+      - name: "cheder"
+        label: "Learning: Cheder"
+        file: "src/learning/cheder.md"
+        fields: *standard_page_fields
+
+      - name: "adult-learning"
+        label: "Learning: Adult learning"
+        file: "src/learning/adult-learning.md"
+        fields: *standard_page_fields
+
+      - name: "school-and-group-visits"
+        label: "Learning: School and group visits"
+        file: "src/learning/school-and-group-visits.md"
+        fields: *standard_page_fields
+
+      - name: "hall-hire"
+        label: "Hall hire"
+        file: "src/hall-hire.md"
+        fields: *standard_page_fields
+
+      - name: "contact-us"
+        label: "Contact us"
+        file: "src/contact-us.njk"
+        fields:
+          - { label: "Page title", name: "title", widget: "string" }
+          - { label: "Intro text", name: "intro", widget: "text" }
+          - { label: "Donate note", name: "donate_note", widget: "text" }
+          - { label: "Address line 1", name: "address_line1", widget: "string" }
+          - { label: "Address line 2", name: "address_line2", widget: "string" }
+          - { label: "Address line 3", name: "address_line3", widget: "string" }
+          - { label: "Address line 4 (town)", name: "address_line4", widget: "string" }
+          - { label: "Postcode", name: "address_postcode", widget: "string" }
+          - { label: "Telephone number", name: "phone", widget: "string" }
+
+      - name: "safeguarding"
+        label: "Safeguarding (policy page)"
+        file: "src/safeguarding.md"
+        fields: *standard_page_fields
+
+      - name: "privacy-notice"
+        label: "Privacy notice (policy page)"
+        file: "src/privacy-notice.md"
+        fields: *standard_page_fields
+
+      - name: "cookie-notice"
+        label: "Cookie notice (policy page)"
+        file: "src/cookie-notice.md"
+        fields: *standard_page_fields
+
+      - name: "accessibility-statement"
+        label: "Accessibility statement (policy page)"
+        file: "src/accessibility-statement.md"
+        fields: *standard_page_fields

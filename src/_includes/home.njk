@@ -1,0 +1,44 @@
+---
+layout: base.njk
+---
+<section class="hero">
+  <div class="wrap hero-inner">
+    <div class="hero-text">
+      <h1>{{ hero_title }}</h1>
+      <p>{{ hero_text }}</p>
+      <a class="btn" href="/contact-us/">Contact us</a>
+      <a class="btn btn-outline" href="/about-us/who-we-are/">Who we are</a>
+    </div>
+    {% if image %}
+    <div class="hero-image">
+      <div class="framed-image">
+        <img src="{{ image }}" alt="{{ image_alt or '' }}">
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="card-grid">
+    {% for card in cards %}
+    <div class="card">
+      <h2>{{ card.title }}</h2>
+      <p>{{ card.text }}</p>
+      <a class="card-link" href="{{ card.link_url }}">{{ card.link_text }}</a>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<section class="callout">
+  <div class="wrap">
+    <h2>{{ callout_title }}</h2>
+    <p>{{ callout_text }}</p>
+    <a class="btn" href="{{ callout_link_url }}">{{ callout_link_text }}</a>
+  </div>
+</section>
+
+{% if content %}
+<div class="content-wrap">{{ content | safe }}</div>
+{% endif %}

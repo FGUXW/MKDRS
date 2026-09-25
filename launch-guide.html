@@ -1,0 +1,377 @@
+<title>MKDRS website launch guide</title>
+<style>
+  :root {
+    --bg: #faf7f0;
+    --surface: #ffffff;
+    --ink: #201c14;
+    --ink-soft: #58513f;
+    --line: #e4ddc9;
+    --blue: #1c3f5f;
+    --blue-soft: #eef2f5;
+    --gold: #a3701f;
+    --gold-bg: #f7ecd8;
+    --code-bg: #efe9d8;
+    --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+    --sans: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #171510;
+      --surface: #211e17;
+      --ink: #f1ecdd;
+      --ink-soft: #c2baa2;
+      --line: #3a3527;
+      --blue: #7fa8c9;
+      --blue-soft: #202c37;
+      --gold: #d9a94f;
+      --gold-bg: #322813;
+      --code-bg: #2a2519;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #171510;
+    --surface: #211e17;
+    --ink: #f1ecdd;
+    --ink-soft: #c2baa2;
+    --line: #3a3527;
+    --blue: #7fa8c9;
+    --blue-soft: #202c37;
+    --gold: #d9a94f;
+    --gold-bg: #322813;
+    --code-bg: #2a2519;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 3.5rem 1.5rem 6rem;
+  }
+
+  header.doc-head {
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 2rem;
+    margin-bottom: 2.5rem;
+  }
+  .eyebrow {
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin: 0 0 0.6rem;
+  }
+  h1 {
+    font-family: var(--serif);
+    font-size: clamp(1.9rem, 4vw, 2.5rem);
+    margin: 0 0 0.75rem;
+    text-wrap: balance;
+    color: var(--ink);
+    font-weight: 600;
+  }
+  .doc-head p {
+    margin: 0;
+    color: var(--ink-soft);
+    max-width: 62ch;
+    font-size: 1.05rem;
+  }
+
+  h2 {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin: 0 0 0.3rem;
+    color: var(--ink);
+  }
+  h3 {
+    font-family: var(--sans);
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 1.4rem 0 0.5rem;
+    color: var(--ink);
+  }
+
+  p { margin: 0.6rem 0; max-width: 68ch; }
+  .lede { color: var(--ink-soft); }
+
+  .step {
+    display: grid;
+    grid-template-columns: 2.75rem 1fr;
+    gap: 0 1.25rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .step:last-of-type { border-bottom: none; }
+  .step-num {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--gold);
+    line-height: 1.3;
+  }
+  .step-body { min-width: 0; }
+
+  .step ol, .step ul {
+    margin: 0.75rem 0;
+    padding-left: 1.2rem;
+  }
+  .step li { margin: 0.4rem 0; max-width: 64ch; }
+
+  code, .code {
+    font-family: var(--mono);
+    background: var(--code-bg);
+    color: var(--ink);
+    padding: 0.12em 0.4em;
+    border-radius: 4px;
+    font-size: 0.88em;
+    word-break: break-word;
+  }
+
+  pre {
+    background: var(--code-bg);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 0.9rem 1rem;
+    overflow-x: auto;
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    line-height: 1.55;
+  }
+  pre code { background: none; padding: 0; }
+
+  .callout {
+    background: var(--blue-soft);
+    border-left: 3px solid var(--blue);
+    border-radius: 0 8px 8px 0;
+    padding: 0.9rem 1.1rem;
+    margin: 0.9rem 0;
+    font-size: 0.95rem;
+  }
+  .callout strong { color: var(--blue); }
+
+  .note {
+    background: var(--gold-bg);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 8px 8px 0;
+    padding: 0.9rem 1.1rem;
+    margin: 0.9rem 0;
+    font-size: 0.95rem;
+  }
+  .note strong { color: var(--gold); }
+
+  a { color: var(--blue); text-decoration-thickness: 1px; }
+  a:hover { color: var(--gold); }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0.75rem 0;
+    font-size: 0.92rem;
+  }
+  th, td {
+    text-align: left;
+    padding: 0.5rem 0.7rem;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+  }
+  th { font-family: var(--sans); font-weight: 700; color: var(--ink-soft); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; }
+
+  .table-wrap { overflow-x: auto; }
+
+  .checklist {
+    list-style: none;
+    margin: 0.75rem 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .checklist li {
+    display: flex;
+    gap: 0.6rem;
+    align-items: flex-start;
+    font-size: 0.95rem;
+  }
+  .checklist li::before {
+    content: "";
+    flex: none;
+    width: 0.9rem;
+    height: 0.9rem;
+    margin-top: 0.3rem;
+    border: 1.5px solid var(--ink-soft);
+    border-radius: 3px;
+  }
+
+  footer.doc-foot {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+    color: var(--ink-soft);
+    font-size: 0.85rem;
+  }
+
+  @media (max-width: 560px) {
+    .step { grid-template-columns: 1fr; gap: 0.2rem; }
+    .step-num { font-size: 1.1rem; }
+  }
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@500;600&family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+
+<div class="wrap">
+  <header class="doc-head">
+    <p class="eyebrow">MKDRS website &middot; setup reference</p>
+    <h1>Getting the new site live</h1>
+    <p class="lede">A step-by-step guide for whoever on the volunteer team is doing the technical setup. No coding needed &mdash; you're mostly clicking "connect" between a few free accounts. Budget around 30&ndash;45 minutes for steps 2&ndash;6, done once. Step 1 is an optional local test. Steps 7 onward are what everyday editors will use.</p>
+  </header>
+
+  <div class="callout">
+    <strong>What you're setting up:</strong> the site's code lives in a free GitHub repository. Netlify builds it into a live website and hosts it for free. Decap CMS gives editors a simple form-based screen at <code>mkdrs.org.uk/admin</code> &mdash; no code, no GitHub login needed for them.
+  </div>
+
+  <section class="step">
+    <div class="step-num">1</div>
+    <div class="step-body">
+      <h2>Test the editor on your own computer first (optional but recommended)</h2>
+      <p>Before putting anything online, you can try the admin editor locally, with no GitHub or Netlify account. This proves the editor screen actually saves your changes to the page files.</p>
+      <ol>
+        <li>Unzip the site files. In a terminal, inside that folder, run <code>npm install</code> once.</li>
+        <li>Open two terminal windows in that folder. In the first, run <code>npx decap-server</code> and leave it running &mdash; this is the small local helper that saves edits to disk.</li>
+        <li>In the second, run <code>npx eleventy --serve</code> and leave it running &mdash; this builds and serves the site.</li>
+        <li>Open <code>http://localhost:8080/admin/</code> in your browser. Skip the login screen (there isn't one locally) and edit a page. Click <strong>Publish</strong>.</li>
+        <li>Refresh <code>http://localhost:8080/</code> and check your change appears on the live page.</li>
+      </ol>
+      <p class="lede">This step only works with an internet connection, because the editor screen loads its interface from a public code library. Once you're happy it works, move on to putting the site online for real.</p>
+    </div>
+  </section>
+
+  <section class="step">
+    <div class="step-num">2</div>
+    <div class="step-body">
+      <h2>Put the code on GitHub</h2>
+      <p>GitHub is where the site's files live and where Netlify will pull them from.</p>
+      <ol>
+        <li>Create a free account at <a href="https://github.com">github.com</a> if the team doesn't have one already.</li>
+        <li>Create a new, empty repository &mdash; call it <code>mkdrs-website</code>. Keep it private or public, either works.</li>
+        <li>Unzip the site files I sent you. In a terminal, inside that unzipped folder, run:</li>
+      </ol>
+      <pre><code>git init
+git add .
+git commit -m "Initial site"
+git branch -M main
+git remote add origin https://github.com/YOUR-USERNAME/mkdrs-website.git
+git push -u origin main</code></pre>
+      <p class="lede">If nobody on the team is comfortable with the terminal, GitHub Desktop (a free app) does the same thing by clicking buttons instead.</p>
+    </div>
+  </section>
+
+  <section class="step">
+    <div class="step-num">3</div>
+    <div class="step-body">
+      <h2>Connect Netlify to that repository</h2>
+      <ol>
+        <li>Create a free account at <a href="https://netlify.com">netlify.com</a> &mdash; sign up with the same GitHub account for the smoothest setup.</li>
+        <li>Choose <strong>Add a new site &rarr; Import an existing project &rarr; GitHub</strong>, then pick the <code>mkdrs-website</code> repository.</li>
+        <li>Netlify will detect the build settings automatically from the site's <code>netlify.toml</code> file (build command <code>npm run build</code>, publish folder <code>_site</code>). Just click <strong>Deploy</strong>.</li>
+      </ol>
+      <p>After a minute or two you'll get a live web address like <code>random-name-123.netlify.app</code>. That's the real site &mdash; check it over before moving on.</p>
+    </div>
+  </section>
+
+  <section class="step">
+    <div class="step-num">4</div>
+    <div class="step-body">
+      <h2>Turn on editor logins</h2>
+      <p>This is what lets your volunteer editors log in to <code>/admin</code> without touching GitHub.</p>
+      <ol>
+        <li>In the Netlify site dashboard: <strong>Site configuration &rarr; Identity &rarr; Enable Identity</strong>.</li>
+        <li>Under Identity settings, set registration to <strong>Invite only</strong> (so strangers can't sign themselves up).</li>
+        <li>Still under Identity, enable <strong>Git Gateway</strong> &mdash; this is what lets Decap CMS save changes back to GitHub on the editor's behalf.</li>
+        <li>Go to the <strong>Identity</strong> tab and click <strong>Invite users</strong> for each volunteer who'll edit the site. They'll get an email to set a password.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="step">
+    <div class="step-num">5</div>
+    <div class="step-body">
+      <h2>Point mkdrs.org.uk at the new site</h2>
+      <p>Since you already own the domain:</p>
+      <ol>
+        <li>In Netlify: <strong>Domain management &rarr; Add a domain</strong>, enter <code>mkdrs.org.uk</code>.</li>
+        <li>Netlify will show you either a nameserver change or a couple of DNS records (A/CNAME) to add at wherever the domain is currently registered.</li>
+        <li>Netlify also issues a free HTTPS certificate automatically once the DNS change is live &mdash; usually within an hour.</li>
+      </ol>
+      <div class="note"><strong>Keep WordPress live until this step is confirmed working.</strong> Don't cancel the old hosting until the new site is loading correctly at the real domain.</div>
+    </div>
+  </section>
+
+  <section class="step">
+    <div class="step-num">6</div>
+    <div class="step-body">
+      <h2>Turn on the contact form</h2>
+      <p>The contact form is already wired up for Netlify's built-in form handling &mdash; nothing to install. Once the site is deployed:</p>
+      <ol>
+        <li>Go to <strong>Forms</strong> in the Netlify dashboard and confirm the <code>contact</code> form was detected.</li>
+        <li>Under <strong>Forms &rarr; Settings &rarr; Form notifications</strong>, add an email notification to whichever address the volunteer team checks (e.g. <code>info@mkdrs.org.uk</code>).</li>
+      </ol>
+      <div class="note">
+        <strong>About "routing to the right person":</strong> the form has a topic dropdown (membership, Cheder, hall hire, and so on), but a free Netlify site sends every submission to one inbox, not different people per topic. The topic still shows up clearly at the top of each email, so whoever monitors that inbox can forward it on. True auto-routing to named owners is possible later using a paid Netlify tier or a simple Zapier automation &mdash; worth revisiting once the site is live and you know submission volume.
+      </div>
+    </div>
+  </section>
+
+  <section class="step">
+    <div class="step-num">7</div>
+    <div class="step-body">
+      <h2>How editors update content day to day</h2>
+      <ol>
+        <li>Go to <code>mkdrs.org.uk/admin</code> and log in with the email that was invited in step 3.</li>
+        <li>Every page appears on the left under <strong>Website pages</strong> &mdash; e.g. "About us: Our history", "Contact us".</li>
+        <li>Click a page, edit the text in the form fields, then click <strong>Publish</strong> top-right.</li>
+        <li>The live site updates automatically within a minute or two &mdash; no code, no waiting on anyone.</li>
+      </ol>
+      <p class="lede">Editors never see GitHub, git, or any code. If someone edits something and wants to undo it, the site's history is kept in GitHub and I can help roll it back.</p>
+    </div>
+  </section>
+
+  <section class="step">
+    <div class="step-num">8</div>
+    <div class="step-body">
+      <h2>Before you tell people the site is live</h2>
+      <p>Four pages were built as clearly-marked placeholders because the source document flagged them as not yet written. Fill these in via <code>/admin</code> before launch:</p>
+      <div class="table-wrap">
+        <table>
+          <tr><th>Page</th><th>What's needed</th></tr>
+          <tr><td>Safeguarding</td><td>The actual policy and safeguarding lead's contact details</td></tr>
+          <tr><td>Privacy notice</td><td>What data is collected (contact form, membership) and how it's used</td></tr>
+          <tr><td>Cookie notice</td><td>Confirm no tracking cookies are in use, or list any that are added later</td></tr>
+          <tr><td>Accessibility statement</td><td>Known limitations and a contact for accessibility feedback</td></tr>
+        </table>
+      </div>
+      <h3>Also from the source document's own checklist</h3>
+      <ul class="checklist">
+        <li>Add the synagogue's telephone number (Contact us page)</li>
+        <li>Add hall capacity, facilities and accessibility details (Hall hire page)</li>
+        <li>Add the registered charity number (site footer)</li>
+        <li>Confirm current interfaith partner organisation names</li>
+        <li>Confirm consent for any photographs added later; no photographs of children</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer class="doc-foot">
+    Built with Eleventy (static site generator) + Decap CMS (free, git-based editor) + Netlify (free hosting). No recurring cost at this scale.
+  </footer>
+</div>

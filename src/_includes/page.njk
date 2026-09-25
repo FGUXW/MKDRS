@@ -1,0 +1,21 @@
+---
+layout: base.njk
+---
+<div class="page-header">
+  <div class="wrap">
+    <h1>{{ title }}</h1>
+    {% if intro %}<p class="intro">{{ intro }}</p>{% endif %}
+  </div>
+</div>
+<div class="content-wrap {% if image %}content-wrap-with-image{% endif %}">
+  <div class="content-body">
+    {{ content | safe }}
+  </div>
+  {% if image %}
+  <div class="content-image">
+    <div class="framed-image">
+      <img src="{{ image }}" alt="{{ image_alt or '' }}">
+    </div>
+  </div>
+  {% endif %}
+</div>

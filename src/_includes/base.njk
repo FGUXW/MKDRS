@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if title %}{{ title }} | {% endif %}Milton Keynes & District Reform Synagogue</title>
+  <meta name="description" content="{{ description or 'MKDRS is a small, friendly Progressive Jewish community serving Milton Keynes and the surrounding area.' }}">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="logo" href="/">
+        <img class="logo-mark-img" src="/images/brand/mkdrs-icon-white.png" alt="" aria-hidden="true">
+        <span class="logo-text">MKDRS<br><small>Milton Keynes &amp; District Reform Synagogue</small></span>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="siteNav">
+        <span></span><span></span><span></span>
+        <span class="visually-hidden">Menu</span>
+      </button>
+
+      <nav class="site-nav" id="siteNav" aria-label="Main navigation">
+        <ul>
+          {% for item in nav %}
+          <li class="has-children">
+            <a href="{{ item.url }}">{{ item.title }}</a>
+            {% if item.children.length %}
+            <ul class="dropdown">
+              {% for child in item.children %}
+              <li><a href="{{ child.url }}">{{ child.title }}</a></li>
+              {% endfor %}
+            </ul>
+            {% endif %}
+          </li>
+          {% endfor %}
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    {{ content | safe }}
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <div class="footer-address">
+        <strong>Beit Echud</strong><br>
+        1 Hainault Avenue, Giffard Park<br>
+        Milton Keynes, MK14 5PQ
+      </div>
+      <ul class="footer-links">
+        <li><a href="/contact-us/">Contact</a></li>
+        <li><a href="/hall-hire/">Hall hire</a></li>
+        <li><a href="/contact-us/#donate">Donate</a></li>
+        <li><a href="/safeguarding/">Safeguarding</a></li>
+        <li><a href="/privacy-notice/">Privacy notice</a></li>
+        <li><a href="/cookie-notice/">Cookie notice</a></li>
+        <li><a href="/accessibility-statement/">Accessibility statement</a></li>
+        <li><a href="https://www.facebook.com/" rel="noopener">Facebook</a></li>
+      </ul>
+      <p class="footer-small">Milton Keynes and District Reform Synagogue is part of the Movement for Reform Judaism. Registered Charity No 1058193.</p>
+    </div>
+  </footer>
+
+  <script>
+    var toggle = document.getElementById('navToggle');
+    var nav = document.getElementById('siteNav');
+    toggle.addEventListener('click', function () {
+      var open = nav.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  </script>
+</body>
+</html>

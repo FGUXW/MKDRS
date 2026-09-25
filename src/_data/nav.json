@@ -1,0 +1,46 @@
+[
+  {
+    "title": "About us",
+    "url": "/about-us/who-we-are/",
+    "children": [
+      { "title": "Who we are", "url": "/about-us/who-we-are/" },
+      { "title": "Our history", "url": "/about-us/our-history/" },
+      { "title": "Our Torah scrolls", "url": "/about-us/our-torah-scrolls/" }
+    ]
+  },
+  {
+    "title": "Jewish life",
+    "url": "/jewish-life/services-and-festivals/",
+    "children": [
+      { "title": "Services and festivals", "url": "/jewish-life/services-and-festivals/" },
+      { "title": "Life cycle events", "url": "/jewish-life/life-cycle-events/" },
+      { "title": "Bereavement", "url": "/jewish-life/bereavement/" },
+      { "title": "Converting to Judaism", "url": "/jewish-life/converting-to-judaism/" }
+    ]
+  },
+  {
+    "title": "Community",
+    "url": "/community/celebrations/",
+    "children": [
+      { "title": "Celebrations", "url": "/community/celebrations/" },
+      { "title": "Social events", "url": "/community/social-events/" },
+      { "title": "Our choir", "url": "/community/our-choir/" },
+      { "title": "Interfaith and outreach", "url": "/community/interfaith-and-outreach/" },
+      { "title": "Jewish life in Milton Keynes", "url": "/community/jewish-life-in-milton-keynes/" }
+    ]
+  },
+  {
+    "title": "Learning",
+    "url": "/learning/cheder/",
+    "children": [
+      { "title": "Cheder", "url": "/learning/cheder/" },
+      { "title": "Adult learning", "url": "/learning/adult-learning/" },
+      { "title": "School and group visits", "url": "/learning/school-and-group-visits/" }
+    ]
+  },
+  {
+    "title": "Contact us",
+    "url": "/contact-us/",
+    "children": []
+  }
+]

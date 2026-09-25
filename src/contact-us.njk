@@ -1,0 +1,70 @@
+---
+layout: base.njk
+title: Contact us
+description: Get in touch with Milton Keynes and District Reform Synagogue.
+intro: "Please get in touch if you would like to attend a service, ask about membership, arrange a school or group visit, enquire about hall hire or speak to us about another aspect of synagogue life."
+donate_note: "We welcome donations, so please speak to us if you would like to donate."
+address_line1: "Beit Echud"
+address_line2: "1 Hainault Avenue"
+address_line3: "Giffard Park"
+address_line4: "Milton Keynes"
+address_postcode: "MK14 5PQ"
+phone: "[add telephone number]"
+---
+<div class="page-header">
+  <div class="wrap">
+    <h1>{{ title }}</h1>
+    <p class="intro">{{ intro }}</p>
+  </div>
+</div>
+
+<div class="content-wrap">
+  <p>{{ donate_note }} <a id="donate"></a></p>
+  <p>Choose the most relevant topic from the form below. Remember though we are all volunteers, and might take a few days to respond to you.</p>
+
+  <div class="contact-block">
+    <form class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+      <input type="hidden" name="form-name" value="contact">
+      <p hidden>
+        <label>Don't fill this out if you're human: <input name="bot-field"></label>
+      </p>
+
+      <label for="topic">What is your enquiry about?</label>
+      <select id="topic" name="topic" required>
+        <option value="">Please choose one</option>
+        <option>Attending a service</option>
+        <option>Membership</option>
+        <option>Cheder</option>
+        <option>Conversion</option>
+        <option>Donate</option>
+        <option>Life cycle event</option>
+        <option>Bereavement</option>
+        <option>School or group visit</option>
+        <option>Hall hire</option>
+        <option>General enquiry</option>
+      </select>
+
+      <label for="name">Your name</label>
+      <input id="name" name="name" type="text" required>
+
+      <label for="email">Your email address</label>
+      <input id="email" name="email" type="email" required>
+
+      <label for="message">Your message</label>
+      <textarea id="message" name="message" rows="6" required></textarea>
+
+      <button class="btn" type="submit">Send message</button>
+    </form>
+
+    <div class="contact-details">
+      <h2>Here's how to reach us</h2>
+      <p><strong>Address</strong><br>
+      {{ address_line1 }}<br>
+      {{ address_line2 }}<br>
+      {{ address_line3 }}<br>
+      {{ address_line4 }}<br>
+      {{ address_postcode }}</p>
+      <p><strong>Telephone:</strong> {{ phone }}</p>
+    </div>
+  </div>
+</div>
